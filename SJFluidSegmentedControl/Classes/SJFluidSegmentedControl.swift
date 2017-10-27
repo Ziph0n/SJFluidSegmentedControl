@@ -309,21 +309,21 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
         self.addSubview($0)
         self.bringSubview(toFront: $0)
         return $0
-    }(UIScrollView(frame: .zero))
+        }(UIScrollView(frame: .zero))
     
     fileprivate lazy var leftSpacerView: UIView = {
         [unowned self] in
         $0.translatesAutoresizingMaskIntoConstraints = false
         self.scrollView.addSubview($0)
         return $0
-    }(UIView(frame: .zero))
+        }(UIView(frame: .zero))
     
     fileprivate lazy var rightSpacerView: UIView = {
         [unowned self] in
         $0.translatesAutoresizingMaskIntoConstraints = false
         self.scrollView.addSubview($0)
         return $0
-    }(UIView(frame: .zero))
+        }(UIView(frame: .zero))
     
     fileprivate lazy var selectorView: UIView = {
         [unowned self] in
@@ -333,7 +333,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
         self.scrollView.addSubview($0)
         $0.backgroundColor = self.selectorViewColor
         return $0
-    }(UIView(frame: .zero))
+        }(UIView(frame: .zero))
     
     fileprivate lazy var leftLimiterView: UIView = {
         [unowned self] in
@@ -362,7 +362,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
                                               multiplier: 1.0,
                                               constant: 0.0))
         return $0
-    }(UIView(frame: .zero))
+        }(UIView(frame: .zero))
     
     fileprivate lazy var rightLimiterView: UIView = {
         [unowned self] in
@@ -391,7 +391,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
                                               multiplier: 1.0,
                                               constant: 0.0))
         return $0
-    }(UIView(frame: .zero))
+        }(UIView(frame: .zero))
     
     fileprivate lazy var shadowView: UIView = {
         [unowned self] in
@@ -426,7 +426,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
                                         constant: 0.0)
         self.addConstraint(constraint)
         return $0
-    }(UIView(frame: .zero))
+        }(UIView(frame: .zero))
     
     fileprivate lazy var gradientView: SJGradientView = {
         [unowned self] in
@@ -460,7 +460,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
         fakeView.addSubview(gradientView)
         self.gradientViewContainer = fakeView
         return gradientView
-    }()
+        }()
     
     fileprivate var gradientViewContainer: UIView?
     fileprivate lazy var segmentViewContainers = [UIView]()
@@ -1028,7 +1028,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
         let fromSegment = currentSegment
         currentSegment = index
         if shadowsEnabled {
-            setupShadowForSegmentAtIndex(index, visible: true, animated: true)
+            //setupShadowForSegmentAtIndex(index, visible: true, animated: true)
         }
         delegate?.segmentedControl?(self, didChangeFromSegmentAtIndex: fromSegment, toSegmentAtIndex: index)
     }
@@ -1046,7 +1046,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
         if !shouldAnimate {
             currentSegment = index
             if shadowsEnabled {
-                setupShadowForSegmentAtIndex(index, visible: true, animated: false)
+                //setupShadowForSegmentAtIndex(index, visible: true, animated: false)
             }
         }
         scrollView.setContentOffset(offsetFromSegment(index), animated: shouldAnimate)
@@ -1470,7 +1470,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
         setCurrentSegmentIndex(savedCurrentSegment, animated: false)
         wereLayoutDependantValuesUpdated = true
     }
-
+    
 }
 
 
@@ -1521,7 +1521,7 @@ extension SJFluidSegmentedControl: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.segmentedControl?(self, didScrollWithXOffset: self.frame.width - self.scrollView.contentOffset.x - selectorView.frame.width)
         if offsetFromSegment(segmentFromOffset(scrollView.contentOffset)).x != scrollView.contentOffset.x {
-            setupShadowForSegmentAtIndex(currentSegment, visible: false, animated: true)
+            //setupShadowForSegmentAtIndex(currentSegment, visible: false, animated: true)
         }
         let percent = percentFromOffset(scrollView.contentOffset)
         let leftIndex = leftSegmentIndexFromPercentage(percent)
@@ -1537,7 +1537,7 @@ extension SJFluidSegmentedControl: UIScrollViewDelegate {
             deselectSegmentAtIndex(number)
             return true
         }))
-
+        
         let factor = CGFloat(Float(percent) - floorf(Float(percent)))
         selectorViewPath = pathForSelectorViewFromPercentage(factor)
         if leftIndex >= 0 && leftIndex < segmentsCount {
@@ -1550,3 +1550,4 @@ extension SJFluidSegmentedControl: UIScrollViewDelegate {
     }
     
 }
+
