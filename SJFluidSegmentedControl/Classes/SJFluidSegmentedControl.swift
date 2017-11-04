@@ -156,6 +156,9 @@ import UIKit
                                          didChangeFromSegmentAtIndex fromIndex: Int,
                                          toSegmentAtIndex toIndex:Int)
     
+    @objc optional func segmentedControl(_ segmentedControl: SJFluidSegmentedControl,
+                                         willChangeToSegmentAtIndex toIndex:Int)
+    
     /// Tells the delegate the the segmented control's selected segment index is about to be changed.
     ///
     /// - parameter segmentedControl: A segmented control object informing the delegate about the impending index change.
@@ -299,13 +302,14 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
     
     // MARK: - Private properties
     
-    fileprivate lazy var scrollView: UIScrollView = {
+    public lazy var scrollView: UIScrollView = {
         [unowned self] in
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.showsHorizontalScrollIndicator = false
         $0.showsVerticalScrollIndicator = false
         $0.delegate = self
         $0.layer.masksToBounds = true
+        $0.isScrollEnabled = false
         self.addSubview($0)
         self.bringSubview(toFront: $0)
         return $0
@@ -1050,6 +1054,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
             }
         }
         scrollView.setContentOffset(offsetFromSegment(index), animated: shouldAnimate)
+        delegate?.segmentedControl?(self, willChangeToSegmentAtIndex: index)
     }
     
     // MARK: - Segment Views Setup
