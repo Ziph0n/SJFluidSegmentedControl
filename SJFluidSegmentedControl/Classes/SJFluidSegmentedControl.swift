@@ -142,6 +142,9 @@ import UIKit
     /// - returns: A view for the selected segment.
     @objc optional func segmentedControl(_ segmentedControl: SJFluidSegmentedControl,
                                          viewForSelectedSegmentAtIndex index: Int) -> UIView
+    
+    @objc optional func segmentedControl(_ segmentedControl: SJFluidSegmentedControl,
+                                         gradientTextColorsForNotSelectedSegments index: Int) -> UIColor
 }
 
 /// SJFluidSegmentedControl Delegate Protocol
@@ -272,7 +275,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
     @IBInspectable open var selectedSegmentTextColor: UIColor = .white
     
     /// The text font for the titles of the segmented control in both states if the data source does not provide attributed titles or views. Default is `.systemFont(ofSize: 14)`.
-    open var textFont: UIFont = .systemFont(ofSize: 14) {
+    open var textFont: UIFont = .systemFont(ofSize: 14, weight: UIFontWeightSemibold) {
         didSet {
             reinstallViews()
         }
@@ -1095,7 +1098,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
                 label.textColor = selectedSegmentTextColor
             }
         } else {
-            label.textColor = textColor
+            label.textColor = dataSource?.segmentedControl?(self, gradientTextColorsForNotSelectedSegments: index)
         }
         label.textAlignment = .center
     }
