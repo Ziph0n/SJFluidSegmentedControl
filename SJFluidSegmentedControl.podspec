@@ -15,7 +15,7 @@ s.author           = { 'Sasho Jadrovski' => 'saso.jadrovski@gmail.com' }
 s.source           = { :git => 'https://github.com/sasojadrovski/SJFluidSegmentedControl.git', :tag => s.version.to_s }
 s.social_media_url = 'https://twitter.com/sasojadrovski'
 
-s.ios.deployment_target = '8.0'
+s.ios.deployment_target = '9.0'
 
 s.source_files = 'SJFluidSegmentedControl/Classes/**/*'
 
