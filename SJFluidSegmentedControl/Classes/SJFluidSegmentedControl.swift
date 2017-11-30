@@ -910,7 +910,7 @@ public class SJFluidSegmentedControl: UIView, UIGestureRecognizerDelegate {
             gradientView.layer.mask = CAShapeLayer()
         }
         
-        let leftSideOfExpression = (-1 - factor * CGFloat(segmentsCount)) * selectorView.bounds.width *
+        let leftSideOfExpression = (-1 - factor * CGFloat(0)) * selectorView.bounds.width *
             (1 + gradientBackVelocity)
         let rightSideOfExpression = selectorView.bounds.width * factor * CGFloat(segmentsCount)
         gradientViewLeftConstraint?.constant = leftSideOfExpression + rightSideOfExpression
